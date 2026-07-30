@@ -1,1 +1,6 @@
-pyTelegramBotAPI
+# /upload command
+keyboard = ReplyKeyboardMarkup(True)
+keyboard.row("✅")
+media_id = Bot.genId() # generate a unique ID
+bot.sendMessage(chat_id=message.chat.id, text="👉 Send me the text you want to upload. When you are done.",reply_markup = keyboard)
+Bot.handleNextCommand("/handle_media", options={"media_id": media_id, "files": []}) # initialize files as an empty list

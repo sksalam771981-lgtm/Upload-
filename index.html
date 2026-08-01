@@ -12,7 +12,7 @@
 <!-- TELEGRAM WEB APP SDK -->
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-<!-- ADSTERRA SDK (Direct Link / Popunder / Smart Link Integration) -->
+<!-- ADSTERRA SDK -->
 <script src="//www.highperformanceformat.com/f907b252da2d1ff702c517f3e59d44ba/invoke.js"></script>
 
 <style>
@@ -206,7 +206,6 @@ let bannerAds=[];
 let settings={ ads_limit: 20, bot_app_link: "" };
 let currentFilter = 'all';
 
-// Adsterra Direct Link / Smart Link URL
 const ADSTERRA_URL = "https://www.effectivecpmnetwork.com/isey6ammc?key=f907b252da2d1ff702c517f3e59d44ba";
 
 function init() {
@@ -317,7 +316,7 @@ window.handleCardClick = (id, link, req) => {
     const count = getProgress(id);
     if(count >= req) {
         window.open(link, '_blank');
-        sessionStorage.removeItem('p_' + id);
+        localStorage.removeItem('p_' + id);
         renderCards();
     } else {
         openSingle(id);
@@ -341,7 +340,7 @@ window.handleUnlock = (id, link, req) => {
     const count = getProgress(id);
     if(count >= req) { 
         window.open(link, '_blank'); 
-        sessionStorage.removeItem('p_' + id);
+        localStorage.removeItem('p_' + id);
         renderCards();
         return; 
     }
@@ -352,12 +351,8 @@ window.handleUnlock = (id, link, req) => {
     }
 
     showOverlay("Opening Ad...");
-    
-    // Adsterra লিংক ওপেন করার জন্য নতুন ট্যাবে বা উইন্ডোতে কল করা হচ্ছে
-    // টেলিগ্রাম মিনি অ্যাপে নতুন ট্যাবে লিংক ওপেন করার সেরা উপায় window.open ব্যবহার করা
     window.open(ADSTERRA_URL, '_blank');
 
-    // ব্যবহারকারী অ্যাড লিংকে ক্লিক করে ফিরে আসার পর টাইম কাউন্ট শুরু হবে
     setTimeout(() => {
         startFinalCountdown(id, link, req);
     }, 1500);
@@ -365,13 +360,13 @@ window.handleUnlock = (id, link, req) => {
 
 function incrementViewCount(videoId) {
     const storageKey = 'viewed_event_' + videoId;
-    if(sessionStorage.getItem(storageKey)) return;
+    if(localStorage.getItem(storageKey)) return;
 
     const vidRef = ref(db, 'videos/' + videoId + '/view_count');
     runTransaction(vidRef, (currentViews) => {
         return (currentViews || 0) + 1;
     }).then(() => {
-        sessionStorage.setItem(storageKey, 'true'); 
+        localStorage.setItem(storageKey, 'true'); 
     }).catch(err => console.error("View update failed", err));
 }
 
@@ -390,7 +385,7 @@ function startFinalCountdown(videoId, link, req) {
             clearInterval(timer);
             
             const currentProgress = getProgress(videoId) + 1;
-            sessionStorage.setItem('p_'+videoId, currentProgress);
+            localStorage.setItem('p_'+videoId, currentProgress);
 
             incDaily(); 
 
@@ -403,9 +398,10 @@ function startFinalCountdown(videoId, link, req) {
             hideOverlay(); 
             showToast("Progress Updated!");
             
+            // রিকোয়ারমেন্ট পূরণ হলেই (যেমন ৩টি অ্যাড দেখা শেষ হলে) ভিডিওর লিংক অটোমেটিক ওপেন হবে
             if(currentProgress >= req) {
                 window.open(link, '_blank');
-                sessionStorage.removeItem('p_' + videoId);
+                localStorage.removeItem('p_' + videoId);
                 renderCards();
             }
         }
@@ -435,7 +431,9 @@ window.setFilter = (id, btn) => { currentFilter=id; renderFilters(); renderCards
 document.getElementById('searchInput').oninput = renderCards;
 function getLiked(){ return JSON.parse(localStorage.getItem('likes')||'[]'); }
 window.toggleLike=(id)=>{ let l=getLiked(); if(l.includes(id)) l=l.filter(x=>x!==id); else l.push(id); localStorage.setItem('likes',JSON.stringify(l)); renderCards(); renderLiked(); }
-function getProgress(id){ return parseInt(sessionStorage.getItem('p_'+id)||0); }
+
+// localStorage ব্যবহার করার কারণে প্রোগ্রেস আর ডিলিট বা মিস হবে না
+function getProgress(id){ return parseInt(localStorage.getItem('p_'+id)||0); }
 function getDaily(){ const d=JSON.parse(localStorage.getItem('daily')||'{}'); return d.date===new Date().toDateString()?d.count:0; }
 function incDaily(){ localStorage.setItem('daily', JSON.stringify({date:new Date().toDateString(), count:getDaily()+1})); }
 
@@ -453,6 +451,7 @@ window.openSingle = (id) => {
 }
 
 window.closeSingle = () => { 
+    document.getElementById('singleView').style.display='none'; // ফিক্সড ডিসপ্লে টগল
     document.getElementById('singleView').classList.remove('active'); 
     document.getElementById('mainContent').style.display='block'; 
     window.history.pushState({}, '', window.location.pathname); 

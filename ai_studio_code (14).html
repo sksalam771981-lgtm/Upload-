@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Official Media Portal - অ্যাপ ও সাইট কালেকশন</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* হেডার */
+        .header {
+            text-align: center;
+            margin: 15px 0 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* টেলিগ্রাম বাটন বক্স */
+        .top-telegram-box {
+            background: #1e293b;
+            border: 1px solid #38bdf8;
+            border-radius: 16px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.15);
+        }
+
+        .telegram-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #38bdf8;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .btn-telegram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+            background: linear-gradient(135deg, #0088cc, #006699);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.35);
+        }
+
+        /* অ্যাপ কার্ড */
+        .app-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            object-fit: cover;
+            background: #0f172a;
+            border: 1px solid #475569;
+            flex-shrink: 0;
+        }
+
+        .app-title-area h2 {
+            font-size: 16.5px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .badge-movie { background: #2563eb; color: #fff; }
+        .badge-viral { background: #dc2626; color: #fff; }
+        .badge-pro { background: #059669; color: #fff; }
+
+        .app-desc {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .app-features {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 14px;
+            font-size: 11.5px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* বাটনের গ্রুপ */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .btn-action {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .btn-action:active {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+
+        .btn-movie { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+        .btn-viral { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .btn-pro { background: linear-gradient(135deg, #059669, #047857); }
+
+        .btn-site-link {
+            background: #0f172a;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            font-size: 13px;
+            padding: 10px;
+        }
+
+        /* আইকন সাইজ */
+        .btn-svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+        }
+
+        /* টিউটোরিয়াল কার্ড */
+        .tutorial-card {
+            background: #1e293b;
+            border: 1px solid #6366f1;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        .tutorial-header h3 {
+            font-size: 16px;
+            color: #a5b4fc;
+            margin-bottom: 3px;
+        }
+
+        .tutorial-header p {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .video-container {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000000;
+            margin-bottom: 14px;
+            border: 1px solid #475569;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            max-height: 260px;
+            display: block;
+        }
+
+        .step-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-item {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-number {
+            background: #6366f1;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .step-text {
+            font-size: 12.5px;
+            color: #cbd5e1;
+        }
+        
+        .step-text b { color: #fbbf24; }
+
+        /* নিচে শেয়ার সেকশন */
+        .share-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .share-title {
+            font-size: 13.5px;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .share-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .btn-share {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 10px 6px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-wa { background: #25d366; }
+        .btn-tg { background: #0088cc; }
+        .btn-cp { background: #4f46e5; }
+
+        /* কপি নোটিফিকেশন */
+        #copyToast {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            background: #10b981;
+            color: white;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 99999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- হেডার -->
+        <div class="header">
+            <h1>🚀 অফিশিয়াল মিডিয়া পোর্টাল</h1>
+            <p>অ্যাপ ডাউনলোড করুন অথবা সরাসরি অনলাইন সাইট ভিজিট করুন</p>
+        </div>
+
+        <!-- টেলিগ্রাম সেকশন -->
+        <div class="top-telegram-box">
+            <span class="telegram-label">📢 সকল আপডেট পেতে আমাদের টেলিগ্রাম চ্যানেলে জয়েন হন:</span>
+            <a href="https://t.me/addlist/fZd2jngRvWtjOWU1" target="_blank" rel="noopener noreferrer" class="btn-telegram">
+                <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                টেলিগ্রাম চ্যানেলে জয়েন করুন
+            </a>
+        </div>
+
+        <!-- ১. মুভি ও নাটক কার্ড -->
+        <div class="app-card">
+            <div class="app-top">
+                <img src="https://i.postimg.cc/rFsMd52t/IMG-20260818-140024-467.jpg" alt="মুভি নাটক" class="app-icon">
+                <div class="app-title-area">
+                    <h2>🎬 Movie Natok Box</h2>
+                    <span class="badge badge-movie">মুভি ও নাটক</span>
+                </div>
+            </div>
+            <p class="app-desc">
+                নতুন সব নাটক, সিনেমা এবং স্পেশাল ভিডিও সম্পূর্ণ ফ্রিতে দেখতে অ্যাপটি নামিয়ে নিন অথবা সরাসরি সাইটে গিয়ে দেখুন।
+            </p>
+            <div class="app-features">
+                <span>📱 সাইজ: ~15 MB</span>
+                <span>⭐ Full HD</span>
+                <span>⚡ ফ্রি আপডেট</span>
+            </div>
+            <div class="button-group">
+                <!-- ডাউনলোড বাটন -->
+                <a href="https://appsgeyser.io/20081952/Movie%20Natok%20Box" target="_blank" rel="noopener noreferrer" class="btn-action btn-movie">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                    ডাউনলোড মুভি অ্যাপ (APK)
+                </a>
+                <!-- সাইট লিংক -->
+                <a href="https://skmovie720.blogspot.com" target="_blank" rel="noopener noreferrer" class="btn-action btn-site-link">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    সরাসরি মুভি সাইটে যান ➔
+                </a>
+            </div>
+        </div>
+
+        <!-- ২. ভাইরাল ভিডিও অ্যাপ কার্ড -->
+        <div class="app-card">
+            <div class="app-top">
+                <img src="https://i.postimg.cc/hvjWdR6R/IMG-20260818-123800-276-2.jpg" alt="ভাইরাল ভিডিও" class="app-icon">
+                <div class="app-title-area">
+                    <h2>🔥 Premium Video App</h2>
+                    <span class="badge badge-viral">ট্রেন্ডিং ভিডিও</span>
+                </div>
+            </div>
+            <p class="app-desc">
+                প্রতিদিনের ট্রেন্ডিং এবং আলোচিত সব ভাইরাল ভিডিও সবার আগে পেতে অ্যাপটি ইনস্টল করুন বা সরাসরি সাইটে দেখুন।
+            </p>
+            <div class="app-features">
+                <span>📱 সাইজ: ~14 MB</span>
+                <span>🔥 ডেইলি আপডেট</span>
+                <span>⚡ ফাস্ট স্পিড</span>
+            </div>
+            <div class="button-group">
+                <!-- ডাউনলোড বাটন -->
+                <a href="https://appsgeyser.io/20081759/Premium%20Video" target="_blank" rel="noopener noreferrer" class="btn-action btn-viral">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                    ডাউনলোড ভাইরাল অ্যাপ (APK)
+                </a>
+                <!-- সাইট লিংক -->
+                <a href="https://premium-video-collection.blogspot.com" target="_blank" rel="noopener noreferrer" class="btn-action btn-site-link">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    সরাসরি ভাইরাল সাইটে যান ➔
+                </a>
+            </div>
+        </div>
+
+        <!-- ৩. ভাইরাল মিনি অ্যাপস প্রো কার্ড -->
+        <div class="app-card">
+            <div class="app-top">
+                <img src="https://i.postimg.cc/3Nn8sB5D/IMG-20260818-082242-332-2.jpg" alt="মিনি অ্যাপস প্রো" class="app-icon">
+                <div class="app-title-area">
+                    <h2>⚡ Viral Mini App Pro</h2>
+                    <span class="badge badge-pro">Super Fast Lite</span>
+                </div>
+            </div>
+            <p class="app-desc">
+                কম ডাটা খরচে এবং দ্রুতগতির স্পিডে শর্ট ও টিকটক ভাইরাল ভিডিও দেখার বিশেষ লাইট ভার্সন। সরাসরি অনলাইনেও চলবে।
+            </p>
+            <div class="app-features">
+                <span>📱 সাইজ: ~8 MB</span>
+                <span>⚡ সুপার ফাস্ট</span>
+                <span>💎 প্রো ভার্সন</span>
+            </div>
+            <div class="button-group">
+                <!-- ডাউনলোড বাটন -->
+                <a href="https://appsgeyser.io/20081771/Viral%20Mini%20App%20pro" target="_blank" rel="noopener noreferrer" class="btn-action btn-pro">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+                    ডাউনলোড মিনি প্রো অ্যাপ (APK)
+                </a>
+                <!-- সাইট লিংক -->
+                <a href="https://t.me/WorldViralVideoCollection_bot/tiktokviralvideo" target="_blank" rel="noopener noreferrer" class="btn-action btn-site-link">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    সরাসরি সাইট / বট ওপেন করুন ➔
+                </a>
+            </div>
+        </div>
+
+        <!-- ৪. ভিডিও টিউটোরিয়াল ও ইনস্টল গাইড সেকশন -->
+        <div class="tutorial-card">
+            <div class="tutorial-header">
+                <h3>🎬 কীভাবে ডাউনলোড ও ইনস্টল করবেন?</h3>
+                <p>নিচের ভিডিওটি দেখে খুব সহজে অ্যাপ ইনস্টল করে নিন</p>
+            </div>
+
+            <!-- আপনার আসল Catbox ভিডিও প্লেয়ার -->
+            <div class="video-container">
+                <video controls playsinline preload="metadata">
+                    <source src="https://files.catbox.moe/uqx0mn.mp4" type="video/mp4">
+                    আপনার ব্রাউজারে ভিডিও প্লেয়ার সাপোর্ট করছে না।
+                </video>
+            </div>
+
+            <!-- লিখিত গাইড -->
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-number">১</div>
+                    <div class="step-text">যেকোনো অ্যাপের <b>"ডাউনলোড (APK)"</b> বাটনে ক্লিক করুন।</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">২</div>
+                    <div class="step-text">ডাউনলোড শুরু হলে ব্রাউজারে <b>"Download anyway"</b>-তে চাপ দিন।</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">৩</div>
+                    <div class="step-text">ইনস্টলের সময় ওয়ার্নিং আসলে <b>"Install anyway"</b>-তে চাপ দিন।</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ৫. শেয়ার অপশন -->
+        <div class="share-card">
+            <div class="share-title">📢 বন্ধুদের সাথে সাইটটি শেয়ার করুন:</div>
+            <div class="share-buttons">
+                <!-- হোয়াটসঅ্যাপ -->
+                <button onclick="shareWhatsApp()" class="btn-share btn-wa">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 012.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.52 11.53c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.55c.12.17 1.74 2.66 4.21 3.73.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.18-.48-.3z"/></svg>
+                    WhatsApp
+                </button>
+                <!-- টেলিগ্রাম -->
+                <button onclick="shareTelegram()" class="btn-share btn-tg">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                    Telegram
+                </button>
+                <!-- কপি লিংক -->
+                <button onclick="copyPageLink()" class="btn-share btn-cp">
+                    <svg class="btn-svg" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                    কপি লিংক
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- টোস্ট নোটিফিকেশন -->
+    <div id="copyToast">✅ লিংক কপি হয়েছে!</div>
+
+    <script>
+        function getShareText() {
+            return "🔥 সেরা সব মুভি, নাটক ও ভাইরাল ভিডিও অ্যাপ ডাউনলোড লিংক: " + window.location.href;
+        }
+
+        function shareWhatsApp() {
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(getShareText()), '_blank');
+        }
+
+        function shareTelegram() {
+            window.open("https://t.me/share/url?url=" + encodeURIComponent(window.location.href) + "&text=" + encodeURIComponent("🔥 সেরা সব মুভি, নাটক ও ভাইরাল ভিডিও অ্যাপ কালেকশন!"), '_blank');
+        }
+
+        function copyPageLink() {
+            var url = window.location.href;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(showToast);
+            } else {
+                var inp = document.createElement("input");
+                inp.value = url;
+                document.body.appendChild(inp);
+                inp.select();
+                document.execCommand("copy");
+                document.body.removeChild(inp);
+                showToast();
+            }
+        }
+
+        function showToast() {
+            var toast = document.getElementById("copyToast");
+            toast.style.display = "block";
+            setTimeout(function() {
+                toast.style.display = "none";
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
